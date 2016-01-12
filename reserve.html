@@ -15,9 +15,9 @@
     
     <p> Click <a ng-click="pc.getParkingInfo()">here</a> to get parking lot info.</p>
     <div ng-repeat="lot in parkingLots">
-    	<div>{{"Parking Lot Id"+lot.endPoint}}</div>
-    	<div>{{"Parking Lot Latitude"+lot.latitude}}</div>
-    	<div>{{"Parking Lot Longitude"+lot.longitude}}</div>
+    	<div>{{"Parking Lot Id : "+lot.endPoint}}</div>
+    	<div>{{"Parking Lot Latitude: "+lot.latitude}}</div>
+    	<div>{{"Parking Lot Longitude : "+lot.longitude}}</div>
     	<table class="table table-bordered">
     		<tr>
         		<th>Parking Spot Id</th>
@@ -31,17 +31,18 @@
    		    </tr>
 		</table>
     </div>
+    
   </div>
   
-  <div ng-controller="ReservationCtrl as rc">
-  <form name="reserveForm" ng-submit="reserveParking()">
-        <p>Parking Client Id: <input type="text"  ng-model="rc.parkingClientId" required /></p>
-        <p>Parkign Spot Id: <input type="text"  ng-model="rc.parkingSpotId" required /></p>
-        <p>Vehicle Id : <input type="text"  ng-model="rc.vehicleId" required /></p>
+  <div ng-controller="ReservationCtrl">
+  	<form name="reserveForm" ng-submit="reserveParking()">
+        <p>Parking Client Id: <input type="text"  ng-model="reservation.parkingClientId" required /></p>
+        <p>Parkign Spot Id: <input type="text"  ng-model="reservation.parkingSpotId" required /></p>
+        <p>Vehicle Id : <input type="text"  ng-model="reservation.vehicleId" required /></p>
         <input type="submit" value="Submit" />
         <hr />
         {{ ServerResponse }}
-    </form>
+   	</form>
   </div>
   
   </body>
