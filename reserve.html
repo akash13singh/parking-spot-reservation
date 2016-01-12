@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="reservation">
+  <head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+   <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body >
+    <header>
+      <h1 class="text-center">Reserve Parking Spot</h1>
+     	
+    </header>
+     
+  <div ng-controller="ParkingSpotsCtrl as pc">
+    
+    <p> Click <a ng-click="pc.getParkingInfo()">here</a> to get parking lot info.</p>
+    <div ng-repeat="lot in parkingLots">
+    	<div>{{"Parking Lot Id"+lot.endPoint}}</div>
+    	<div>{{"Parking Lot Latitude"+lot.latitude}}</div>
+    	<div>{{"Parking Lot Longitude"+lot.longitude}}</div>
+    	<table class="table table-bordered">
+    		<tr>
+        		<th>Parking Spot Id</th>
+        		<th>Parking Spot state</th>
+        		<th>Vehicle Id</th>
+    		</tr>
+    		<tr ng-repeat="spot in lot.spotList">
+        		<td>{{spot.parkingSpotId}}</td>
+        		<td>{{spot.parkingSpotState}}</td>
+        		<td>{{spot.vehicleId}}</td>
+   		    </tr>
+		</table>
+    </div>
+  </div>
+  
+  <div ng-controller="ReservationCtrl as rc">
+  <form name="reserveForm" ng-submit="reserveParking()">
+        <p>Parking Client Id: <input type="text"  ng-model="rc.parkingClientId" required /></p>
+        <p>Parkign Spot Id: <input type="text"  ng-model="rc.parkingSpotId" required /></p>
+        <p>Vehicle Id : <input type="text"  ng-model="rc.vehicleId" required /></p>
+        <input type="submit" value="Submit" />
+        <hr />
+        {{ ServerResponse }}
+    </form>
+  </div>
+  
+  </body>
+</html> 
